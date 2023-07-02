@@ -42,7 +42,7 @@ services:
       - "--certificatesresolvers.letsencrypt.acme.dnschallenge=true"
       - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare"
       - "--certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers=1.1.1.1:53"
-      - "--certificatesresolvers.letsencrypt.acme.email=$MAIL"
+      - "--certificatesresolvers.letsencrypt.acme.email=$EMAIL"
       - "--certificatesresolvers.letsencrypt.acme.storage=/etc/traefik/acme.json"
 
       - "--providers.docker=true"
@@ -56,15 +56,15 @@ services:
 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`$HOSTNAME`)"
+      - "traefik.http.routers.traefik.rule=Host(`$HOSTNAME_TRAEFIK`)"
       - "traefik.http.routers.traefik.entrypoints=web-secure"
       - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
       - traefik.http.routers.traefik.tls.domains[0].main=$DOMAIN
       - "traefik.http.routers.traefik.service=api@internal"
 
     environment: 
-      CF_API_EMAIL: $EMAIL
-      CF_API_KEY: $API-KEY
+      CF_API_EMAIL: "$CLOUDFLARE_EMAIL"
+      CF_API_KEY: "$CLOUDFLARE_API_KEY"
 
     image: "traefik:v2.8"
 
@@ -98,8 +98,8 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.portainer.entrypoints=web-secure"
-      - "traefik.http.routers.portainer.rule=Host(`portainer.linux4life.com.br`)"
-      - traefik.http.routers.portainer.tls.domains[0].main=*.linux4life.com.br
+      - "traefik.http.routers.portainer.rule=Host(`$HOSTNAME_PORTAINER`)"
+      - traefik.http.routers.portainer.tls.domains[0].main=$DOMAIN"
       - " traefik.http.routers.portainer.service=portainer"
       - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
