@@ -1,9 +1,8 @@
 #!/bin/bash
 
 LOCATION=$(pwd)
-PROXY=$'proxy'
-TRAEFIK=$'traefik'
-PORTAINER=$'portainer'
+STACK=$'Stack-Traefik-Proxy'
+
 
 if [ -n $1 ]
 then
@@ -18,17 +17,14 @@ if [[ $1 == 'up' ]]
 then
   echo 'Add email, cloudflare api key and domain to be used in traefik'
    read
-      vim $TRAEFIK/.env
+      vim $STACK/.env
   sleep 5
 
   echo 'Create stack proxy, traefik and portainer...'
   sleep 5
-  cd $PROXY
+  cd $STACK
     docker compose up -d
-  cd $TRAEFIK
-    docker compose up -d
-  cd $PORTAINER
-    docker compose up -d
+  
 fi
 
 #Restart Stack
@@ -36,15 +32,10 @@ if [[ $1 == 'restart' ]]
 then
   echo 'Restarting stack proxy, traefik and portainer...'
   sleep 5
-  cd $PROXY
+  cd $STACK
     docker compose down
     docker compose up -d
-  cd $TRAEFIK
-    docker compose down
-    docker compose up -d
-  cd $PORTAINER
-    docker compose down
-    docker compose up -d
+ 
 fi
 
 #Stop Stack
@@ -52,13 +43,9 @@ if [[ $1 == 'stop' ]]
 then
   echo 'Stopping stack proxy, traefik and portainer...'
   sleep 5
-  cd $PROXY
+  cd $STACK
      docker compose stop -t 30
-  cd $TRAEFIK
-    docker compose stop -t 30
 
-  cd $PORTAINER
-     docker compose stop -t 30
 fi
 
 #Start Stack
@@ -66,12 +53,7 @@ if [[ $1 == 'start' ]]
 then
   echo 'Starting stack proxy, traefik and portainer...'
   sleep 5
-  cd $PROXY
-     docker compose start
-  cd $TRAEFIK
-    docker compose start
-
-  cd $PORTAINER
+  cd $STACK
      docker compose start
 fi
 

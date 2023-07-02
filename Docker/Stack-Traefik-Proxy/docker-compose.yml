@@ -16,7 +16,7 @@ services:
       - POST=1
     image: tecnativa/docker-socket-proxy:latest
     ports:
-      - "10.0.0.53:2375:2375"
+      - "2375:2375"
       
     networks:
       - proxy
