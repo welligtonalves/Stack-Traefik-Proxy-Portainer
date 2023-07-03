@@ -3,7 +3,7 @@
 </div>
 
 
-#Traefik
+Traefik on Docker with Socket Proxy tecnativa, Cloudflare and Portainer.
 
 Traefik is an open-source edge router that facilitates the easy deployment of services. One very interesting aspect is that it integrates natively with most cluster technologies, such as Kubernetes, Docker, Docker Swarm. 
 Traefik brings significant advantages compared to commonly used reverse proxy software because it was born with Cloud Native practices in mind, meaning it is specifically designed for cloud computing.
@@ -26,13 +26,24 @@ For example, if the username is "devops" and the encrypted password is "devops",
 echo $(htpasswd -nbB devops "devops") | sed -e s/\\$/\\$\\$/g
 devops:$$2y$$05$$mUC2H0I4tDtlpW9j8c3E7uSFaQoQjsuHbPvPsou/nWBj2AcuMW0BC
 
+CloudFlare
 
-#Docker Socket Proxy tecnativa
+Please fill in your Cloudflare account information, the domain to be used, and the email for notifications.
+
+CLOUDFLARE_EMAIL= email cloudflare
+CLOUDFLARE_API_KEY= cloudflare key
+HOSTNAME_TRAEFIK= traefik.mydomain.com
+HOSTNAME_PORTAINER= portainer.mydomain.com
+DOMAIN= *.mydomain.com
+EMAIL= traefiknotify@mydomain.com
+
+
+Docker Socket Proxy tecnativa
 
 This is a security-enhanced proxy for the Docker Socket.
 Giving access to your Docker socket could mean giving root access to your host, or even to your whole swarm, but some services require hooking into that socket to react to events, etc. Using this proxy lets you block anything you consider those services should not do.
 
-#Portainer
+Portainer
 
 Portainer is a web interface that interacts with the Docker socket to create new containers and monitor them.
 Portainer can also be used to visualize the cluster, manage user authentication, and control access permissions to the cluster.
