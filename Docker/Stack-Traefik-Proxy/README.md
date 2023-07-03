@@ -8,6 +8,25 @@
 Traefik is an open-source edge router that facilitates the easy deployment of services. One very interesting aspect is that it integrates natively with most cluster technologies, such as Kubernetes, Docker, Docker Swarm. 
 Traefik brings significant advantages compared to commonly used reverse proxy software because it was born with Cloud Native practices in mind, meaning it is specifically designed for cloud computing.
 
+To enhance the security of our dashboard, you can add an authentication middleware using the following labels:
+
+"traefik.http.routers.traefik.middlewares=authtraefik"
+"traefik.http.middlewares.authtraefik.basicauth.users=user:hashpassword"
+
+To create an encrypted password for the user, you can use the htpasswd tool from the apache2-utils package. Here are the steps to generate the encrypted password:
+
+Install the apache2-utils package on your system. You can use the package manager specific to your operating system. For example, on Ubuntu, you can run:
+
+sudo apt-get install apache2-utils
+
+Use the htpasswd tool to generate the encrypted password. Run the following command, replacing <devops> with the desired username:
+
+For example, if the username is "devops" and the encrypted password is "devops", the label would look like:
+
+echo $(htpasswd -nbB devops "devops") | sed -e s/\\$/\\$\\$/g
+devops:$$2y$$05$$mUC2H0I4tDtlpW9j8c3E7uSFaQoQjsuHbPvPsou/nWBj2AcuMW0BC
+
+
 #Docker Socket Proxy tecnativa
 
 This is a security-enhanced proxy for the Docker Socket.
