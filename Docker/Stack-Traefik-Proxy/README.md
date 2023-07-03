@@ -3,10 +3,10 @@
 </div>
 
 
-Traefik on Docker with Socket Proxy tecnativa, Cloudflare and Portainer.
+# Traefik on Docker with Socket Proxy tecnativa, Cloudflare and Portainer.
 
-Traefik is an open-source edge router that facilitates the easy deployment of services. One very interesting aspect is that it integrates natively with most cluster technologies, such as Kubernetes, Docker, Docker Swarm. 
-Traefik brings significant advantages compared to commonly used reverse proxy software because it was born with Cloud Native practices in mind, meaning it is specifically designed for cloud computing.
+<p>Traefik is an open-source edge router that facilitates the easy deployment of services. One very interesting aspect is that it integrates natively with most cluster technologies, such as Kubernetes, Docker, Docker Swarm. 
+Traefik brings significant advantages compared to commonly used reverse proxy software because it was born with Cloud Native practices in mind, meaning it is specifically designed for cloud computing. </p>
 
 To enhance the security of our dashboard, you can add an authentication middleware using the following labels:
 
@@ -30,12 +30,12 @@ CloudFlare
 
 Please fill in your Cloudflare account information, the domain to be used, and the email for notifications.
 
-CLOUDFLARE_EMAIL= email cloudflare
-CLOUDFLARE_API_KEY= cloudflare key
-HOSTNAME_TRAEFIK= traefik.mydomain.com
-HOSTNAME_PORTAINER= portainer.mydomain.com
-DOMAIN= *.mydomain.com
-EMAIL= traefiknotify@mydomain.com
+<p>CLOUDFLARE_EMAIL= email cloudflare</p>
+<p>CLOUDFLARE_API_KEY= cloudflare key</p>
+<p>HOSTNAME_TRAEFIK= traefik.mydomain.com</p>
+<p>HOSTNAME_PORTAINER= portainer.mydomain.com</p>
+<p>DOMAIN= *.mydomain.com</p>
+<p>EMAIL= traefiknotify@mydomain.com</p>
 
 
 Docker Socket Proxy tecnativa
