@@ -8,10 +8,21 @@
 <p>Traefik is an open-source edge router that facilitates the easy deployment of services. One very interesting aspect is that it integrates natively with most cluster technologies, such as Kubernetes, Docker, Docker Swarm. 
 Traefik brings significant advantages compared to commonly used reverse proxy software because it was born with Cloud Native practices in mind, meaning it is specifically designed for cloud computing. </p>
 
+Docker Socket Proxy tecnativa
+
+This is a security-enhanced proxy for the Docker Socket.
+Giving access to your Docker socket could mean giving root access to your host, or even to your whole swarm, but some services require hooking into that socket to react to events, etc. Using this proxy lets you block anything you consider those services should not do.
+
+Portainer
+
+Portainer is a web interface that interacts with the Docker socket to create new containers and monitor them.
+Portainer can also be used to visualize the cluster, manage user authentication, and control access permissions to the cluster.
+In summary, Portainer is an application for managing your containers, whether they are in a cluster or not.
+
 To enhance the security of our dashboard, you can add an authentication middleware using the following labels:
 
-"traefik.http.routers.traefik.middlewares=authtraefik"
-"traefik.http.middlewares.authtraefik.basicauth.users=user:hashpassword"
+<p>"traefik.http.routers.traefik.middlewares=authtraefik"</p>
+<p>"traefik.http.middlewares.authtraefik.basicauth.users=user:hashpassword"</p>
 
 To create an encrypted password for the user, you can use the htpasswd tool from the apache2-utils package. Here are the steps to generate the encrypted password:
 
@@ -26,7 +37,9 @@ For example, if the username is "devops" and the encrypted password is "devops",
 echo $(htpasswd -nbB devops "devops") | sed -e s/\\$/\\$\\$/g
 devops:$$2y$$05$$mUC2H0I4tDtlpW9j8c3E7uSFaQoQjsuHbPvPsou/nWBj2AcuMW0BC
 
-CloudFlare
+Run the script services.sh
+
+bash services.sh
 
 Please fill in your Cloudflare account information, the domain to be used, and the email for notifications.
 
@@ -36,15 +49,3 @@ Please fill in your Cloudflare account information, the domain to be used, and t
 <p>HOSTNAME_PORTAINER= portainer.mydomain.com</p>
 <p>DOMAIN= *.mydomain.com</p>
 <p>EMAIL= traefiknotify@mydomain.com</p>
-
-
-Docker Socket Proxy tecnativa
-
-This is a security-enhanced proxy for the Docker Socket.
-Giving access to your Docker socket could mean giving root access to your host, or even to your whole swarm, but some services require hooking into that socket to react to events, etc. Using this proxy lets you block anything you consider those services should not do.
-
-Portainer
-
-Portainer is a web interface that interacts with the Docker socket to create new containers and monitor them.
-Portainer can also be used to visualize the cluster, manage user authentication, and control access permissions to the cluster.
-In summary, Portainer is an application for managing your containers, whether they are in a cluster or not.
