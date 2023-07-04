@@ -61,6 +61,8 @@ services:
       - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
       - traefik.http.routers.traefik.tls.domains[0].main=$DOMAIN
       - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.middlewares=authtraefik"
+      - "traefik.http.middlewares.authtraefik.basicauth.users=user:hashpassword"
 
     environment: 
       CF_API_EMAIL: "$CLOUDFLARE_EMAIL"
