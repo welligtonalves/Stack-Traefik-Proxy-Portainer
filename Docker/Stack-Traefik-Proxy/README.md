@@ -49,7 +49,7 @@ example:
 
 bash services.sh up
 
-## Please fill in your Cloudflare account information, the domain to be used, and the email for notifications.
+### Please fill in your Cloudflare account information, the domain to be used, and the email for notifications.
 
 <p>CLOUDFLARE_EMAIL= email cloudflare</p>
 <p>CLOUDFLARE_API_KEY= cloudflare key</p>
