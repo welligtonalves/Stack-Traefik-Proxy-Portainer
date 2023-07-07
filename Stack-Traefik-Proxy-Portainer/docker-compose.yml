@@ -38,7 +38,7 @@ services:
       - "--serverstransport.insecureskipverify=true"
       - "--entrypoints.web.http.redirections.entryPoint.to=web-secure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
-      - "--certificatesresolvers.eumais.acme.caserver=https://api.buypass.com/acme/directory"
+      - "--certificatesresolvers.letsencrypt.caserver=https://api.buypass.com/acme/directory"
       - "--certificatesresolvers.letsencrypt.acme.dnschallenge=true"
       - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare"
       - "--certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers=1.1.1.1:53"
