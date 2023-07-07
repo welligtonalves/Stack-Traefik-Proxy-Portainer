@@ -62,7 +62,7 @@ services:
       - traefik.http.routers.traefik.tls.domains[0].main=$DOMAIN
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.middlewares=authtraefik"
-      - "traefik.http.middlewares.authtraefik.basicauth.users=user:hashpassword"
+      - "traefik.http.middlewares.authtraefik.basicauth.users=devops:$$2y$$05$$mUC2H0I4tDtlpW9j8c3E7uSFaQoQjsuHbPvPsou/nWBj2AcuMW0BC"
 
     environment: 
       CF_API_EMAIL: "$CLOUDFLARE_EMAIL"
