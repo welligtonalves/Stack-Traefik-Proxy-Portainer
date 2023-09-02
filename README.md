@@ -3,53 +3,50 @@
 </div>
 
 
-## Traefik on Docker with Socket Proxy tecnativa, Cloudflare and Portainer.
+## Traefik no Docker com Proxy de Socket da Tecnativa, Cloudflare e Portainer
 
-<p>Traefik is an open-source edge router that facilitates the easy deployment of services. One very interesting aspect is that it integrates natively with most cluster technologies, such as Kubernetes, Docker, Docker Swarm. 
-Traefik brings significant advantages compared to commonly used reverse proxy software because it was born with Cloud Native practices in mind, meaning it is specifically designed for cloud computing. </p>
+<p>Traefik é um roteador de borda de código aberto que facilita a implantação fácil de serviços. Um aspecto muito interessante é que ele se integra nativamente com a maioria das tecnologias de cluster, como Kubernetes, Docker e Docker Swarm. O Traefik traz vantagens significativas em comparação com o software de proxy reverso comumente usado, porque foi criado com as práticas nativas da nuvem em mente, ou seja, foi projetado especificamente para computação em nuvem.
+ </p>
 
-## Docker Socket Proxy tecnativa
+## Proxy de Socket do Docker da Tecnativa
 
-This is a security-enhanced proxy for the Docker Socket.
-Giving access to your Docker socket could mean giving root access to your host, or even to your whole swarm, but some services require hooking into that socket to react to events, etc. Using this proxy lets you block anything you consider those services should not do.
+Este é um proxy com melhorias de segurança para o Socket do Docker. Dar acesso ao seu Socket do Docker pode significar dar acesso de root ao seu host, ou até mesmo a todo o seu swarm, mas alguns serviços precisam se conectar a esse socket para reagir a eventos, etc. Usar este proxy permite bloquear qualquer coisa que você considere que esses serviços não devem fazer.
 
 ## Portainer
 
-Portainer is a web interface that interacts with the Docker socket to create new containers and monitor them.
-Portainer can also be used to visualize the cluster, manage user authentication, and control access permissions to the cluster.
-In summary, Portainer is an application for managing your containers, whether they are in a cluster or not.
+O Portainer é uma interface web que interage com o Socket do Docker para criar novos contêineres e monitorá-los. O Portainer também pode ser usado para visualizar o cluster, gerenciar autenticação de usuário e controlar permissões de acesso ao cluster. Em resumo, o Portainer é uma aplicação para gerenciar seus contêineres, estejam eles em um cluster ou não.
 
-To enhance the security of our dashboard, you can add an authentication middleware using the following labels:
+Para aumentar a segurança do nosso painel, você pode adicionar um middleware de autenticação usando as seguintes etiquetas:
 
 <p>"traefik.http.routers.traefik.middlewares=authtraefik"</p>
 <p>"traefik.http.middlewares.authtraefik.basicauth.users=user:hashpassword"</p>
 
-To create an encrypted password for the user, you can use the htpasswd tool from the apache2-utils package. Here are the steps to generate the encrypted password:
+Para criar uma senha criptografada para o usuário, você pode usar a ferramenta htpasswd do pacote apache2-utils. Aqui estão os passos para gerar a senha criptografada:
 
-Install the apache2-utils package on your system. You can use the package manager specific to your operating system. For example, on Ubuntu, you can run:
+Instale o pacote apache2-utils no seu sistema. Você pode usar o gerenciador de pacotes específico para o seu sistema operacional. Por exemplo, no Ubuntu, você pode executar:
 
 sudo apt-get install apache2-utils
 
-Use the htpasswd tool to generate the encrypted password. Run the following command, replacing <devops> with the desired username:
+Use a ferramenta htpasswd para gerar a senha criptografada. Execute o seguinte comando, substituindo com o nome de usuário desejado:
 
-For example, if the username is "devops" and the encrypted password is "devops", the label would look like:
+Por exemplo, se o nome de usuário for "devops" e a senha criptografada for "devops", a etiqueta ficaria assim:
 
 echo $(htpasswd -nbB devops "devops") | sed -e s/\\$/\\$\\$/g
 devops:$$2y$$05$$mUC2H0I4tDtlpW9j8c3E7uSFaQoQjsuHbPvPsou/nWBj2AcuMW0BC
 
-## Up Services 
+## Iniciar Serviços
 
-Run the script services.sh 
+Iniciar Serviços
 
-Usage: bash services <option>
+Execute: bash services <Opções>
 
-### Options: up, stop, restart, exclud
+### Opções: up, stop, restart, exclud
 
-example:
+exemplo:
 
 bash services.sh up
 
-### Please fill in your Cloudflare account information, the domain to be used, and the email for notifications.
+### Por favor, preencha as informações da sua conta Cloudflare, o domínio a ser usado e o endereço de e-mail para notificações
 
 <p>CLOUDFLARE_EMAIL= email cloudflare</p>
 <p>CLOUDFLARE_API_KEY= cloudflare key</p>
