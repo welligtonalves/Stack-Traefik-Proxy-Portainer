@@ -32,6 +32,7 @@ Use a ferramenta htpasswd para gerar a senha criptografada. Execute o seguinte c
 Por exemplo, se o nome de usuário for "devops" e a senha criptografada for "devops", a etiqueta ficaria assim:
 
 echo $(htpasswd -nbB devops "devops") | sed -e s/\\$/\\$\\$/g
+
 devops:$$2y$$05$$mUC2H0I4tDtlpW9j8c3E7uSFaQoQjsuHbPvPsou/nWBj2AcuMW0BC
 
 ## Iniciar Serviços
