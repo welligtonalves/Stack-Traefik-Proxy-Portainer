@@ -1,4 +1,8 @@
 #!/bin/bash
+#!/bin/bash
+####################################################################
+# Script de backup criado por Welligton Alves Analista eulabs  #####
+####################################################################
 
 LOCATION=$(pwd)
 
